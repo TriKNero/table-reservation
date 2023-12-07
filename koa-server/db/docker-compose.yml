@@ -1,0 +1,15 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    hostname: localhost
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    command: mongod --bind_ip localhost --replSet rs0 --keyFile /rs-key
+    volumes:
+      - "./rs-key:/rs-key"
